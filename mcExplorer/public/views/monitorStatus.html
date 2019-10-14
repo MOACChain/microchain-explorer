@@ -1,0 +1,156 @@
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.bootcss.com/angular.js/1.6.3/angular.min.js"></script>
+<style>
+ input::-webkit-input-placeholder { 
+
+color: #9d9c9d; 
+font-weight:300
+
+
+} 
+
+input:-moz-placeholder { 
+
+color: #9d9c9d; 
+font-weight:300
+} 
+
+input::-moz-placeholder { 
+
+color: #9d9c9d;  
+font-weight:300
+
+} 
+
+input:-ms-input-placeholder { 
+
+color: #9d9c9d;  
+font-weight:300
+
+}  
+
+
+table, td {
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+table tr:nth-child(odd) {
+	background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+	background-color: #ffffff;
+}
+
+th {
+	color: #3498db;
+	background-color: #ffffff;
+}
+
+.contract {
+	color: grey;
+}
+
+
+
+
+.page-content{
+background: #ffffff
+}
+
+body {
+	font-family: "微软雅黑";
+}
+
+button {
+	display: inline-block;
+	padding: 6px 12px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	border-color: #28a4c9;
+	color: #fff;
+	background-color: #5bc0de;
+	margin: 20px 20px 0 0;
+}
+
+.box {
+	width: 300px;
+	height: 34px;
+	float: right;
+}
+
+
+.info {
+	width: 200px;
+	height: 34px;
+	line-height: 34px;
+}
+
+.fl {
+	float: left;
+}
+.ui-pagination-container{
+	text-align: right;
+}
+</style>
+<link rel="stylesheet" href="../css/jquery.pagination.css" />
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../js/jquery.pagination.min.js"></script>
+
+<script type="text/javascript"> 
+$("#searchToken").keydown(function() {
+	 if (event.keyCode == "13") {   //keyCode=13是回车键
+		 $(".btn").click();
+    }
+});
+</script>
+
+</head>
+<body>
+
+	<div class="row ">
+	<span  id = "scb" style = "color: #697882; font-size: 22px; font-weight:400; margin-left: 15px">MicroChain </span>  
+<span style = "color: #94abc1; font-size: 13px; font-weight:400">{{microChainAddr}}</span>
+
+  <div class="col-md-12 portlet light">
+      
+			<div class="portlet-title">
+				<span style="float: right;">
+				</span>
+					<div class="caption">
+						<span ng-show="addr.isContract" class="ng-hide"></span>Overview
+					</div>
+			</div>
+
+
+			<div class="portlet-body">
+			
+	
+    <div class="col-md-10 portlet light">
+        <div class="table-scrollable">
+         
+            <table class="col-md-4 table">
+                    <thead >
+                            <tr>
+                                <th class="mc-a"> Monitor </th>
+                                <th class="mc-a"> Status </th>
+                            </tr>
+                        </thead>
+                <tr ng-repeat="t in monitors track by $index" repeat-finish>
+ 					<td > {{t.monitorHost}} </td>
+                    <td > {{t.status}} </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+</div>
+</body>

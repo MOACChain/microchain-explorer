@@ -1,0 +1,42 @@
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+  <div class="col-md-12 portlet light">
+      <div class="portlet-body">
+      <div style = "margin-bottom: 30px">
+<span id = "scb" style = "color: #697882; font-size: 22px; font-weight:400">MicroChain Block </span>  
+<span style = "color: #94abc1; font-size: 13px; font-weight:400">{{blockDetail.Header.number}}</span>
+</div>
+        <table class="col-md-6 table table-hover">
+          <tr ><td width="25%">Height</td><td>{{blockDetail.Header.number}}</td></tr>
+          <tr ><td width="25%">Time</td>  
+                <td>{{blockDetail.datetime | date:'yyyy-MM-dd HH:mm:ss' }} ({{blockDetail.Header.timestamp | timeDuration}} ago)</td>
+          </tr>
+          <tr ><td width="25%">Hash</td><td>{{blockDetail.Hash}}</td></tr>
+          <tr ><td width="25%">ParentHash</td><td>{{blockDetail.Header.parentHash}}</td></tr>
+          <tr ><td width="25%">Mined By</td><td>{{blockDetail.Header.miner}}</td></tr>
+          <tr ><td width="25%">Extra Data</td><td>{{blockDetail.Header.extraData}}</td></tr>
+        </table>
+    </div>
+    <!--TODO: calculate block reward -->
+
+  </div>
+    <!-- Begin: Transaction Datatable -->
+  <div class="portlet light portlet-datatable col-md-12">
+     <div class="portlet-body">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th> Transactions </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="t in blockDetail.Txs">
+                <td> <a class = "mc-a" href="/sctx/{{usedMonitorIp}}&{{usedMonitorPort}}&{{microChainAddr}}&{{t.hash}}&{{rpcType}}">{{t.hash}}</a> </td>
+<!--                 <td> <a href="/sctx/{{t.hash}}&{{blockDetail.Header.number}}&{{blockDetail.Header.timestamp}}&{{t.from}}
+                &{{t.to}}&{{t.value}}&{{t.gas}}&{{t.gasPrice}}&{{t.nonce}}&{{t.input}}">{{t.hash}}</a> </td> -->
+            </tr>
+        </tbody>
+    </table>
+      </div>
+    </div><!-- End: portlet -->
+</div>

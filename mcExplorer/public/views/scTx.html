@@ -1,0 +1,39 @@
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+  <div class="col-md-12 portlet light">
+  
+  <div style = "margin-bottom: 30px">
+<span id = "scb" style = "color: #697882; font-size: 22px; font-weight:400">MicroChain Transaction </span>  
+<span style = "color: #94abc1; font-size: 13px; font-weight:400">{{hash}}</span>
+</div>
+      <div class="portlet-body">
+
+
+        <table class="col-md-6 table table-hover">
+          
+          <tr ><td width="25%">Hash</td><td>{{hash}}</td></tr>
+          <tr ><td width="25%">BlockNumber</td>
+                <td>{{blockNumber}}</td>
+          </tr>
+          <tr ><td width="25%">Time</td>
+                <td>{{datetime | date:'yyyy-MM-dd HH:mm:ss' }} ({{timestamp | timeDuration}} ago)</td>
+          </tr>
+          <tr ><td width="25%">From</td>
+                <td>{{from}}</td></tr>
+                </tr>
+                
+                <tr ><td width="25%">To</td>
+                <td >{{to}}</td>
+                </tr>
+          <tr ><td width="25%">Value</td><td>{{value}}</td></tr>
+          <tr ><td width="25%">Gas Provided</td><td>{{gas}}</td></tr>
+          <tr ><td width="25%">GasPrice</td><td>{{gasPrice}}</td></tr>
+          <tr ><td width="25%">Nonce</td><td>{{nonce}}</td></tr>
+          <tr ><td width="25%">Status</td><td>{{status}}</td></tr>
+          <tr ><td width="25%">Input Data</td><td><pre class="code">{{input}}</pre></td></tr>
+        </table>
+
+    </div>
+
+  </div>
+</div>

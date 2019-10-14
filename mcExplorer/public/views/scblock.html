@@ -1,0 +1,132 @@
+<html>
+<head>
+<link rel="stylesheet" href="../css/default.css" />
+</head>
+<body>
+<div class="row">
+    <div class="col-md-12 offset-md-1">
+    </div>
+    <div class="row" style = "margin-left:20px; margin-bottom: 10px">
+            <div class="col-md-6 center" style = "width: 47%">
+                  <div ng-show="!acc" class="margin-top-20"><span class="moacmc-stat-text">MicroChain Address :</span>&nbsp;
+                  <span ng-if = "watchStatus == 1"> {{subChainAddress}}</span>
+                  <span ng-if = "watchStatus == 0"> {{subChainAddress}}</span>
+                 
+                 
+                 </div>
+                  <div ng-show="!acc" class="margin-top-20"><span class="moacmc-stat-text">Sender : </span> {{ info.Sender}}</div>
+                  <div ng-show="!acc" class="margin-top-20">
+	                       <span class="moacmc-stat-text">MicroChain Balance :</span>&nbsp;{{subchainBalance}}
+	              </div>
+				
+				<div ng-show="!acc" class="margin-top-20">
+                       <span class="moacmc-stat-text">BondLimit :</span>
+                       &nbsp;{{ info.BondLimit /  1000000000000000000}}
+                    </div>
+               <div ng-if="type == 1">
+	                    <div ng-show="!acc" class="margin-top-20">
+	                    <span class="moacmc-stat-text">Exchange / Operation / Bond :</span>
+	                       {{totalExchange}} / {{totalOperation}} /  {{totalBond}}
+	                    </div>
+					</div>
+                    
+                  
+					
+            </div>
+
+            <div class="col-md-6 center" style = "width: 26%">
+                <div class="portlet">
+                  <div class="portlet-body">
+                    <div ng-show="acc" class="margin-top-20"><span class="moacmc-stat-text"> Token Balance:</span> {{token.tokenNum}}</div>
+					<div ng-show="!acc" class="margin-top-20" >
+						<span class="moacmc-stat-text" ng-if = "status == 1" id = "123">Status : true </span>
+						<span class="moacmc-stat-text" ng-if = "status == 0 || status == 2" id = "234">Status : <font color = "red">false</font></span>
+					
+					</div>
+					<div ng-show="!acc" class="margin-top-20"><span class="moacmc-stat-text">IsToken : </span> {{info.Balance > 0? "true": "false"}}</div>
+                    
+                    <div class="margin-top-20"><span class="moacmc-stat-text"> BlockReward :</span> {{ info.BlockReward}}</div>
+                    
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-6 center" style = "width: 27%">
+                  <div ng-show="!acc" class="margin-top-20"><span class="moacmc-stat-text">NodeCount : </span> {{info.ScsList.length}}</div>
+                  <div class="margin-top-20"><span class="moacmc-stat-text"> ViaReward :</span> {{ info.ViaReward}}</div>
+                  <div class="margin-top-20"><span class="moacmc-stat-text"> TxReward :</span> {{ info.TxReward}}</div>
+					
+            </div>
+
+      </div><!--end row-->
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <!-- BEGIN PORTLET-->
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="fa fa-cubes font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">MicroChain Blocks</span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group">
+                        <a class="btn btn-med" ng-click="reloadBlocks()"><i class="fa fa-refresh" ng-class="{'fa-spin': blockLoading}"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="todo-tasklist scrollable">
+                    <div ng-repeat="t in latest_blocks track by $index" class="todo-tasklist-item item-border-green row" ng-class="(t.extraData.indexOf('Parity') > -1) ? 'item-border-red': '';(t.extraData.indexOf('Pool') > -1) ? 'item-border-blue': ''">
+                        <!--TODO: color by known miners -->
+                        <div class="col-sm-5">
+                            <span class="todo-tasklist-item-title"><i class="fa fa-cube"></i> <a href="/subchainBlock/{{t.Header.number}}&{{usedMonitorIp}}&{{usedMonitorPort}}&{{subChainAddress}}&{{rpcType}} " >{{t.Header.number}}</a></span><br>
+                            <span class="todo-tasklist-date">
+                                <i class="fa fa-hourglass-o"></i>{{t.Header.timestamp | timeDuration }} ago</span>
+                        </div>
+                        <div class="todo-tasklist-controls col-sm-7">
+                            <div class="todo-tasklist-item-text"><br>
+                            by <span class="moacmc-stat-text">{{t.Header.miner}}</span><br>
+                            {{t.Txs.length}} txns
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PORTLET-->
+    </div>
+    
+    <div id="scbackground" class="background" style="display: none; "></div> 
+    <div class="col-md-6 col-sm-6" >
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">Node Balance</span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group">
+                    </div>
+                </div>                    
+            </div>
+            <div class="portlet-body">
+                <div class="general-item-list scrollable">
+                    <div class="item"  ng-repeat="t in scsBalanceList track by $index">
+                    <div class="item-head">
+                        <span  class="moacmc-stat-text">{{t.scsAddress}} </span>:
+                    </div>
+                    <div class="todo-tasklist-controls"> 
+                      <div class="todo-tasklist-item-text" style="margin-top:4px;">{{t.scsBalance}} Moac</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

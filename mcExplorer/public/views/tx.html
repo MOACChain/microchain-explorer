@@ -1,0 +1,72 @@
+<!-- BEGIN PAGE CONTENT-->
+<style type="text/css">
+table.dataTable tbody th, table.dataTable tbody td{ font-size: 12px;}
+</style>
+<div class="row">
+  <div class="col-md-12 portlet light">
+  <div style = "margin-bottom: 30px">
+<span id = "scb" style = "color: #697882; font-size: 22px; font-weight:400">Transaction </span>  
+<span style = "color: #94abc1; font-size: 13px; font-weight:400">{{tx.hash}}</span>
+</div>
+      <div class="portlet-body">
+
+        <table class="col-md-6 table table-hover">
+          
+          <tr ><td width="25%">Hash</td><td>{{tx.hash}}</td></tr>
+          <tr ><td width="25%">BlockNumber</td>
+                <td><a href="/block/{{tx.blockNumber}}">{{tx.blockNumber}}</a></td>
+          </tr>
+          <tr ><td width="25%">Time</td>
+                <td>{{tx.datetime | date:'yyyy-MM-dd HH:mm:ss' }} ({{tx.timestamp | timeDuration}} ago)</td>
+          </tr>
+          <tr ><td width="25%">From</td>
+                <td><a href="/addr/{{tx.from}}">{{tx.from}}</a></td></tr>
+          <tr ng-show="tx.to"><td width="25%">To</td>
+                <td><a href="/addr/{{tx.to}}">{{tx.to}}</a></td></tr>
+          <tr ng-show="tx.creates"><td width="25%">creates</td>
+                <td><a href="/addr/{{tx.creates}}">{{tx.creates}}</a></td></tr>                
+          <tr ><td width="25%">Value</td><td>{{tx.value}} MOAC</td></tr>
+          <tr ><td width="25%">GasLimit</td><td>{{tx.gas}}</td></tr>
+          <tr ><td width="25%">GasPrice</td><td>{{tx.gasPrice}} MOAC</td></tr>
+          <tr ><td width="25%">GasUsed</td><td>{{tx.gasUsed}}</td></tr>
+          <tr ><td width="25%">Actual Tx Cost</td><td>{{tx.txCost}} MOAC</td></tr>
+          <tr ><td width="25%">Nonce</td><td>{{tx.nonce}}</td></tr>
+          <tr ng-if="tx.status=='0x1'"><td width="25%">Status</td><td>SUCCESS</td></tr>
+          <tr ng-if="tx.status=='0x0'"><td width="25%">Status</td><td><font color = "red">FAIL</font></td></tr>
+          <tr ><td width="25%">Input Data</td><td><pre class="code">{{tx.input}}</pre></td></tr>
+        </table>
+
+        <div class="portlet light portlet-datatable col-md-12" style = "padding:0px">
+     <div class="portlet-body">
+        <div >
+       <div style = "font-size: 14px; font-weight: 600">Internal Txs</div><br/>
+          <div class="tab-content">
+
+            <div class="tab-pane table-container" ng-class="{active: activeTab == 'tab_addr' || !activeTab}" id="tab_addr"><!-- Datatable tab -->
+
+              <table class="table table-striped table-hover" id="internalTxs" style="" >
+                  <thead>
+                      <tr role="row" class="heading">
+                          <th width="14%"> TxHash </th>
+                          <th width="8%"> Block </th>
+                          <th width="19%"> From </th>
+                          <th width="19%"> To </th>
+                          <th width="8%"> MOAC </th>
+                          <!-- <th width="0%"> gas </th> -->
+                          <th width="15%"> Time </th>
+                      </tr>
+                  </thead>
+                  <tbody></tbody>
+              </table>
+            </div>
+
+            
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
