@@ -55,5 +55,8 @@ node app
 
 0.1.0
 
+## License
+The project is licensed under the GNU Lesser General Public License v3.0, also included in our repository in the LICENSE file.
+
 
 
